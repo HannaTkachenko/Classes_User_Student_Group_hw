@@ -11,7 +11,7 @@ class User {
 }
 
 class Student extends User {
-  constructor(name, surname, currentEducationDay) {
+  constructor(name, surname, year, currentEducationDay) {
     super(name, surname);
     this.year = year;
     this.currentEducationDay = new Date().getFullYear();
@@ -31,7 +31,7 @@ class Student extends User {
   }
 
   getCourse() {
-    return this.today - this.year + 1;
+    return this.currentEducationDay - this.year + 1;
   }
 
   getSurnameWithInitials() {
@@ -49,9 +49,21 @@ class Group {
     if (this.students.length > 0) {
       return this.students.map((student) => student.getSurnameWithInitials());
     }
-    throw new Error('No students in group')
+    throw new Error("No students in group");
   }
 }
 
-
-
+const user = new User("Ivan", "Tkach");
+const student = new Student("Ivan", "Tkach", 2020);
+const group = new Group("New group", [
+  new Student("Ivan", "Gess", 2019),
+  new Student("Amedeo", "Avogadro", 2016),
+  new Student("Fridrich", "Kekule", 2022),
+  new Student("Maria ", "Curie", 2017),
+  new Student("Michael", "Faradei", 2020),
+  new Student("Louis", "Paster ", 2023),
+  new Student("Lainus", "Poling", 2018),
+]);
+console.log(user.getFullName());
+console.log(student.getCourse());
+console.log(group.showStudents());
