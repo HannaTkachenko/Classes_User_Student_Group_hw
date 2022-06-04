@@ -34,7 +34,24 @@ class Student extends User {
     return this.today - this.year + 1;
   }
 
-  getSurnameWithInitials(){
-    return `${this.surname} ${this.name.charAt(0)}`
+  getSurnameWithInitials() {
+    return `${this.surname} ${this.name.charAt(0)}`;
   }
 }
+
+class Group {
+  constructor(name, students) {
+    this.name = name;
+    this.students = students;
+  }
+
+  showStudents() {
+    if (this.students.length > 0) {
+      return this.students.map((student) => student.getSurnameWithInitials());
+    }
+    throw new Error('No students in group')
+  }
+}
+
+
+
